@@ -1,0 +1,16 @@
+{
+  "name": "moodle UQAC par session",
+  "permissions": ["storage"],
+  "version": "1.0",
+  "icons": { "128": "icon.png"},
+  "description": "cache les entrées dans la liste de cours qui ne sont pas relative à la session actuelle. Configurer dans les options de l'extension",
+  "manifest_version": 2,
+  "options_page": "options.html",
+
+  "content_scripts": [
+  {
+    "matches": ["https://moodle.uqac.ca/*"],
+    "js": ["contentScript.js"]
+  }
+]
+}
