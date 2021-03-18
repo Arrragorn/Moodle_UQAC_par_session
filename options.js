@@ -2,9 +2,11 @@
 function save_options() {
   var session_active = document.getElementById('session_active').value;
   var is_active = document.getElementById('is_active').checked;
+  var blacklist = document.getElementById('blacklist').value
   chrome.storage.sync.set({
     sessionActive: session_active,
-    isActive: is_active
+    isActive: is_active,
+    blacklist: blacklist
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -20,11 +22,13 @@ function save_options() {
 function restore_options() {
   // Use default value color = 'red' and likesColor = true.
   chrome.storage.sync.get({
-    sessionActive: 'Hiver 2021',
-    isActive: true
+    sessionActive: 'Hiver 2021;Dossier',
+    isActive: true,
+    blacklist: ''
   }, function(items) {
     document.getElementById('session_active').value = items.sessionActive;
     document.getElementById('is_active').checked = items.isActive;
+    document.getElementById('blacklist').value = items.blacklist;
   });
 }
 document.addEventListener('DOMContentLoaded', restore_options);
